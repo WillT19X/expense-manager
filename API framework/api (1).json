@@ -1,0 +1,144 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Python Expense Management API",
+    "description": "A Flask-based API for tracking personal expenses using SQLite.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000",
+      "description": "Local development server"
+    }
+  ],
+  "paths": {
+    "/expenses": {
+      "get": {
+        "summary": "Retrieve all expenses",
+        "responses": {
+          "200": {
+            "description": "A list of expenses",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Expense"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a new expense",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExpenseInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Expense created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Expense"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/expenses/{id}": {
+      "get": {
+        "summary": "Get details of a specific expense",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detailed expense object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Expense"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Expense not found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Expense": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "example": "2026-02-09"
+          },
+          "cost_gbp": {
+            "type": "number",
+            "format": "float",
+            "example": 12.50
+          },
+          "description": {
+            "type": "string",
+            "example": "Train ticket to London"
+          },
+          "expense_type": {
+            "type": "string",
+            "enum": ["travel", "food", "other"],
+            "example": "travel"
+          }
+        }
+      },
+      "ExpenseInput": {
+        "type": "object",
+        "required": ["date", "cost_gbp", "description", "expense_type"],
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "cost_gbp": {
+            "type": "number",
+            "format": "float"
+          },
+          "description": {
+            "type": "string"
+          },
+          "expense_type": {
+            "type": "string",
+            "enum": ["travel", "food", "other"]
+          }
+        }
+      }
+    }
+  }
+}
