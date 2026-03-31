@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="mb-4">Add Expense</h1>
+
+<form action ="/add" method="POST" class="row g-2 needs-validation" novalidate>
+    <div class="col-md-6">
+        <label for="dateValidation" class="form-label"> Date </label>
+        <input type="date" class ="form-control" id="dateValidation" name="date" required>
+        <div class="invalid-feedback"> Please select a date </div>
+    </div>
+    <div class="col-md-6">
+        <label for="costValidation" class="form-label"> Cost </label>
+        <input type="number" class="form-control" id="costValidation" step="0.01" name="cost" required>
+        <div class="invalid-feedback"> Please input a valid cost </div>
+    </div>
+    <div class="col-md-6">
+        <label for="descriptionValidation" class="form-label"> Description </label>
+        <input type="text" class="form-control" id="descriptionValidation" name="description" required>
+        <div class="invalid-feedback"> Please provide a description for the expense </div>
+    </div>
+    <div class="col-md-6">
+        <label for="expenseType" class="form-label"> Expense Type </label>
+        <select class="form-select form-select-sm" id="expenseType" name="category" required>
+            <option selected disabled value =""> Choose an option below </option> 
+            <option value ="travel"> travel</option>
+            <option value ="food"> food </option>
+            <option value ="other"> other</option>
+        </select>
+        <div class="invalid-feedback"> Please select an option</div>
+    </div>
+    <div class ="col-md-12">
+        <label for="submit" class ="form-label"></label>
+        <button class="btn btn-primary" type="submit"> Submit Form </button>
+    </div>
+</form>
+
+<script>
+    (() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+</script>
+{% endblock %}
