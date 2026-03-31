@@ -14,5 +14,13 @@ DataBaseSetup()
 def home():
     return render_template("index.html")
 
+@app.route("/add", methods=["GET", "POST"])
+def add_page():
+    return render_template("add.html")
+
+@app.route("/home")
+def home_page():
+    return render_template("index.html")
+
 if __name__=='__main__':
     app.run(debug=True)
