@@ -1,18 +1,15 @@
 {% extends "base.html" %}
-
 {% block content %}
 
-<h1> View Expenses</h1> <!-- heading -->
-
+<h1> Chosen Expense Below </h1>
 <table>
     <tr>
         <th> ID </th>
-        <th> Date </th>
+        <th> date </th>
         <th> cost </th>
-        <th> Description </th>
+        <th> description </th>
         <th> category </th>
     </tr>
-    {% for expense in expenses %}
     <tr>
         <td>{{ expense.id }}</td>
         <td>{{ expense.date }}</td>
@@ -20,6 +17,5 @@
         <td>{{ expense.description }}</td>
         <td>{{ expense.expense_type }}</td>
     </tr>
-{% endfor %}
 </table>
 {% endblock %}

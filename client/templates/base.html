@@ -18,9 +18,9 @@
             <a class = "navbar-brand" href="#"> Expense Manager </a>
             <div class="collapse navbar-collapse" id="navbarContent">
                 <div class="navbar-nav">
-                    <a class="nav-link text-light" href="{{ url_for('home_page') }}"> Home </a>
-                    <a class="nav-link text-light" href="{{ url_for('add_page') }}"> Add </a>
-                    <a class="nav-link text-light" href="#"> View </a>
+                    <a class="nav-link text-light" href="{{ url_for('home') }}"> Home </a> <!-- direct user to the index page(home)-->
+                    <a class="nav-link text-light" href="{{ url_for('add_expense') }}"> Add </a> <!-- direct user to adding expenses -->
+                    <a class="nav-link text-light" href="{{ url_for('expense_page') }}"> Expenses </a>
                 </div>
             </div>
         </div>
@@ -30,10 +30,10 @@
     </div>
     
     
-    <script 
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" 
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" 
         crossorigin="anonymous">
     </script>
+    <script src ="{{ url_for('static', filename='scripts.js') }}"></script>
 </body>
 </html>

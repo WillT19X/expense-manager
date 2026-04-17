@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form action ="/ViewExpense" method="POST">
+    <div class = "col-md-12">
+        <label for= "ExpenseValidation" class ="form-label"> ID </label>
+        <input type="number" class="form-control" id="ExpenseValidation" name="expense_id" required>
+        <div class= "invalid-feedback"> Please input the ID of an expense </div>
+    </div>
+    <div class= "col-md-12">
+        <label for="submit" class="form-label"></label>
+        <button class="btn btn-primary" type="submit"> Submit Form </button>
+    </div>
+</form>
+{% endblock %}
+
+
